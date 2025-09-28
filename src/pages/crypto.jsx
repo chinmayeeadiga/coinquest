@@ -1,3 +1,5 @@
+import React, { useEffect, useState, useRef } from "react";
+import { Chart } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -12,7 +14,18 @@ import {
   LineController,
   BarController,
 } from "chart.js";
+import zoomPlugin from "chartjs-plugin-zoom";
+import "chartjs-adapter-date-fns";
 
+// Financial charts
+import {
+  CandlestickController,
+  OhlcController,
+  CandlestickElement,
+  OhlcElement,
+} from "chartjs-chart-financial";
+
+// Register everything
 ChartJS.register(
   CategoryScale,
   LinearScale,
