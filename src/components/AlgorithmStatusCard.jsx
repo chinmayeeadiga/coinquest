@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./algo.css";
+
 function AlgorithmStatusCard() {
   const [status, setStatus] = useState({
     core: "Loading...",
@@ -10,14 +11,14 @@ function AlgorithmStatusCard() {
   const [error, setError] = useState(null);
 
   const apiUrl = import.meta.env.VITE_API_URL;
-  // Replace with your ngrok URL
 
   const fetchAlgorithmStatus = async () => {
     try {
       setLoading(true);
       setError(null);
 
-      const response = await fetch(`${apiUrl}/api/market_data/btc`, {
+      // ✅ Correct endpoint
+      const response = await fetch(`${apiUrl}/api/algorithm_status`, {
         headers: {
           "ngrok-skip-browser-warning": "true",
         },

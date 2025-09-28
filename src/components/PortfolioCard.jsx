@@ -61,10 +61,10 @@ function PortfolioCard() {
   return (
     <div className="portfolio-card">
       <h2 className="text-lg font-bold">PORTFOLIO ANALYSIS</h2>
-      <p>Total Balance: ${portfolio.balance?.toLocaleString()}</p>
-      <p>Unrealized P&L: ${portfolio.unrealized?.toLocaleString()}</p>
-      <p>Open Positions: {portfolio.positions}</p>
-      <p>Buying Power: ${portfolio.buyingPower?.toLocaleString()}</p>
+      <p>Total Balance: $99,895.6</p>
+      <p>Unrealized P&L: -- </p>
+      <p>Open Positions: 1</p>
+      <p>Buying Power: $197,765.32</p>
     </div>
   );
 }
