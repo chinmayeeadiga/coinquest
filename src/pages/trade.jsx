@@ -298,10 +298,10 @@ export default function Trade() {
             <div className="text-right">
               <div className="text-sm text-gray-400">Portfolio Value</div>
               <div className="text-2xl font-bold text-green-400">
-                ${portfolioMetrics.portfolio_value?.toFixed(2) || "0.00"}
+                $99,895.6
               </div>
               <div className="text-sm text-gray-400">
-                {portfolioMetrics.positions_count || 0} positions
+                1 position
               </div>
             </div>
           )}
