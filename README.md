@@ -3,7 +3,7 @@
 A full-stack **AI-powered autonomous trading system** with **real-time market scanning**, **AI-enhanced technical analysis**, and a **human-in-the-loop approval workflow**.  
 
 👉 **Live Demo:**  
-- **Frontend Dashboard:** [coinquest-indol.vercel.app](https://coinquest-indol.vercel.app/)  
+- **Frontend Dashboard:** [coinquest-indol.vercel.app]([https://coinquest-indol.vercel.app/](https://coinquest-gvgy.vercel.app/))  
 - **Backend API:** [coin-pilot-3.onrender.com](https://coin-pilot-3.onrender.com)  
 
 ---
