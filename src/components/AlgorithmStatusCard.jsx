@@ -9,15 +9,18 @@ function AlgorithmStatusCard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const ngrokUrl = "https://1917286b732f.ngrok-free.app"; // Replace with your ngrok URL
+  const apiUrl = import.meta.env.VITE_API_URL;
+  // Replace with your ngrok URL
 
   const fetchAlgorithmStatus = async () => {
     try {
       setLoading(true);
       setError(null);
 
-      const response = await fetch(`${ngrokUrl}/api/algorithm_status`, {
-        headers: { "ngrok-skip-browser-warning": "true" },
+      const response = await fetch(`${apiUrl}/api/market_data/btc`, {
+        headers: {
+          "ngrok-skip-browser-warning": "true",
+        },
       });
 
       if (!response.ok) {
@@ -46,19 +49,11 @@ function AlgorithmStatusCard() {
   }, []);
 
   if (loading) {
-    return (
-      <div className="algorithm-card">
-        Loading algorithm status...
-      </div>
-    );
+    return <div className="algorithm-card">Loading algorithm status...</div>;
   }
 
   if (error) {
-    return (
-      <div className="algorithm-card">
-        {error}
-      </div>
-    );
+    return <div className="algorithm-card">{error}</div>;
   }
 
   return (

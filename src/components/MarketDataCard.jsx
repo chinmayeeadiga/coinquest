@@ -11,7 +11,7 @@ function MarketDataCard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const ngrokUrl = "https://1917286b732f.ngrok-free.app"; // Replace with your ngrok URL
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const fetchMarketData = async () => {
     try {
@@ -19,7 +19,7 @@ function MarketDataCard() {
       setError(null);
 
       // ✅ Correct backend endpoint
-      const response = await fetch(`${ngrokUrl}/api/market_data/btc`, {
+      const response = await fetch(`${apiUrl}/api/market_data/btc`, {
         headers: {
           "ngrok-skip-browser-warning": "true",
         },
@@ -54,19 +54,11 @@ function MarketDataCard() {
   }, []);
 
   if (loading) {
-    return (
-      <div className="market-card">
-        Loading market data...
-      </div>
-    );
+    return <div className="market-card">Loading market data...</div>;
   }
 
   if (error) {
-    return (
-      <div className="market-card">
-        {error}
-      </div>
-    );
+    return <div className="market-card">{error}</div>;
   }
 
   return (

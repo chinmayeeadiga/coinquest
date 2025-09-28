@@ -14,32 +14,45 @@ function Home() {
 
   return (
     <div className="home-container">
-  {/* Logo */}
-  <img src={logo} alt="Logo" className="logo" />
+      {/* Logo */}
+      <img src={logo} alt="Logo" className="logo" />
 
-  {/* Cards */}
-  
- 
+      {/* Cards */}
 
-  {/* Center content */}
-  <div className="center-content">
-    <TypewriterEffect
-      words={[{ text: "COINQUEST", className: "text-white" }]}
-      className="coinquest-title"
-      cursorClassName="bg-blue-500"
-    />
+      {/* Center content */}
+      <div className="center-content">
+        <TypewriterEffect
+          words={[{ text: "COINQUEST", className: "text-white" }]}
+          className="coinquest-title"
+          cursorClassName="bg-blue-500"
+        />
 
-    <div className="button-group">
-      <button className="watch-btn" onClick={() => navigate("/crypto")}>Watch</button>
-      <button className="trade-btn" onClick={() => navigate("/trade")}>Trade</button>
+        <div className="button-group">
+          <button className="watch-btn" onClick={() => navigate("/crypto")}>
+            Watch
+          </button>
+          <button className="trade-btn" onClick={() => navigate("/trade")}>
+            Trade
+          </button>
+        </div>
+
+        <MarketDataCard
+          title="Top Left"
+          content="This is the top left card"
+          position="top-left"
+        />
+        <PortfolioCard
+          title="Bottom Left"
+          content="This is the bottom left card"
+          position="bottom-left"
+        />
+        <AlgorithmStatusCard
+          title="Top Right"
+          content="This is the top right card"
+          position="bottom-right"
+        />
+      </div>
     </div>
-    
-    <MarketDataCard title="Top Left" content="This is the top left card" position="top-left" />
-     <PortfolioCard title="Bottom Left" content="This is the bottom left card" position="bottom-left" />
-  <AlgorithmStatusCard title="Top Right" content="This is the top right card" position="bottom-right" />
-  </div>
-</div>
-
   );
 }
 

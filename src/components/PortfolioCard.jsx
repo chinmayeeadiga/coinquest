@@ -10,15 +10,18 @@ function PortfolioCard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const ngrokUrl = "https://1917286b732f.ngrok-free.app"; // Replace with your ngrok URL
+  const apiUrl = import.meta.env.VITE_API_URL;
+  // Replace with your ngrok URL
 
   const fetchPortfolio = async () => {
     try {
       setLoading(true);
       setError(null);
 
-      const response = await fetch(`${ngrokUrl}/api/portfolio`, {
-        headers: { "ngrok-skip-browser-warning": "true" },
+      const response = await fetch(`${apiUrl}/api/market_data/btc`, {
+        headers: {
+          "ngrok-skip-browser-warning": "true",
+        },
       });
 
       if (!response.ok) {
@@ -48,19 +51,11 @@ function PortfolioCard() {
   }, []);
 
   if (loading) {
-    return (
-      <div className="portfolio-card">
-        Loading portfolio...
-      </div>
-    );
+    return <div className="portfolio-card">Loading portfolio...</div>;
   }
 
   if (error) {
-    return (
-      <div className="portfolio-card">
-        {error}
-      </div>
-    );
+    return <div className="portfolio-card">{error}</div>;
   }
 
   return (

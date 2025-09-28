@@ -6,7 +6,6 @@ import AppLayout from "./layouts/app-layout";
 import Crypto from "./pages/crypto";
 import Trade from "./pages/trade";
 
-
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
@@ -28,7 +27,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
- return <RouterProvider router={router} />;
+  return <RouterProvider router={router} />;
 }
 
 export default App;

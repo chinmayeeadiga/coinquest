@@ -52,7 +52,7 @@ export default function CryptoWatch() {
   const [proposals, setProposals] = useState([]);
   const [selectedSymbols, setSelectedSymbols] = useState([]);
   const [proposalError, setProposalError] = useState(null);
-  const [apiStatus, setApiStatus] = useState('checking');
+  const [apiStatus, setApiStatus] = useState("checking");
 
   const chartRef = useRef(null);
 
@@ -61,9 +61,9 @@ export default function CryptoWatch() {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
-      legend: { 
-        display: true, 
-        labels: { color: "#fff" }
+      legend: {
+        display: true,
+        labels: { color: "#fff" },
       },
       tooltip: {
         titleColor: "#fff",
@@ -71,10 +71,10 @@ export default function CryptoWatch() {
         backgroundColor: "rgba(0,0,0,0.8)",
       },
       zoom: {
-        zoom: { 
-          wheel: { enabled: true }, 
-          pinch: { enabled: true }, 
-          mode: "x" 
+        zoom: {
+          wheel: { enabled: true },
+          pinch: { enabled: true },
+          mode: "x",
         },
         pan: { enabled: true, mode: "x" },
       },
@@ -98,15 +98,15 @@ export default function CryptoWatch() {
     const fetchCrypto = async () => {
       setLoading(true);
       setError(null);
-      
+
       try {
         const url = `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=${timeframe}&limit=100`;
         const res = await fetch(url);
-        
+
         if (!res.ok) {
           throw new Error(`Failed to fetch data: ${res.status}`);
         }
-        
+
         const data = await res.json();
 
         if (!Array.isArray(data)) {
@@ -167,48 +167,43 @@ export default function CryptoWatch() {
   // Check API status and fetch proposals
   useEffect(() => {
     const checkApiAndFetchProposals = async () => {
-      const possibleUrls = [
-        'https://1917286b732f.ngrok-free.app',
-        'http://localhost:8080',
-        'http://127.0.0.1:8080',
-        'http://localhost:8000',
-        'http://127.0.0.1:8000',
-      ];
+      const possibleUrls = [import.meta.env.VITE_API_URL];
 
-      setApiStatus('checking');
-      
+      setApiStatus("checking");
+
       for (const baseUrl of possibleUrls) {
         try {
           // First check if API is running
           const pingRes = await fetch(`${baseUrl}/ping`, {
-            method: 'GET',
+            method: "GET",
             headers: {
-          'ngrok-skip-browser-warning': 'true',
-          'Content-Type': 'application/json',
-        },
-
+              "ngrok-skip-browser-warning": "true",
+              "Content-Type": "application/json",
+            },
           });
 
           if (pingRes.ok) {
-            setApiStatus('connected');
+            setApiStatus("connected");
             console.log(`Connected to API at ${baseUrl}`);
-            
+
             // Now fetch proposals
             try {
               const proposalRes = await fetch(`${baseUrl}/api/dashboard`, {
-                method: 'GET',
+                method: "GET",
                 headers: {
-          'ngrok-skip-browser-warning': 'true',
-          'Content-Type': 'application/json',
-        },
-
+                  "ngrok-skip-browser-warning": "true",
+                  "Content-Type": "application/json",
+                },
               });
 
               if (proposalRes.ok) {
                 const data = await proposalRes.json();
                 console.log("Dashboard API response:", data);
 
-                if (data.pending_proposals && Array.isArray(data.pending_proposals)) {
+                if (
+                  data.pending_proposals &&
+                  Array.isArray(data.pending_proposals)
+                ) {
                   setProposals(data.pending_proposals);
                   setProposalError(null);
                 } else {
@@ -216,50 +211,57 @@ export default function CryptoWatch() {
                   const mockProposals = [
                     {
                       id: 1,
-                      symbol: 'BTC',
-                      action: 'BUY',
-                      current_price: 43890.50,
-                      target_price: 45500.00,
-                      stop_loss: 42800.00,
+                      symbol: "BTC",
+                      action: "BUY",
+                      current_price: 43890.5,
+                      target_price: 45500.0,
+                      stop_loss: 42800.0,
                       risk_score: 0.25,
                       confidence: 0.72,
-                      reasoning: 'Technical indicators showing bullish momentum with ML confidence of 72%'
+                      reasoning:
+                        "Technical indicators showing bullish momentum with ML confidence of 72%",
                     },
                     {
                       id: 2,
-                      symbol: 'ETH',
-                      action: 'HOLD',
-                      current_price: 2398.60,
-                      target_price: 2450.00,
-                      stop_loss: 2300.00,
+                      symbol: "ETH",
+                      action: "HOLD",
+                      current_price: 2398.6,
+                      target_price: 2450.0,
+                      stop_loss: 2300.0,
                       risk_score: 0.18,
                       confidence: 0.65,
-                      reasoning: 'Mixed signals from technical analysis, waiting for clearer direction'
+                      reasoning:
+                        "Mixed signals from technical analysis, waiting for clearer direction",
                     },
                     {
                       id: 3,
-                      symbol: 'SOL',
-                      action: 'BUY',
-                      current_price: 102.30,
-                      target_price: 108.50,
-                      stop_loss: 98.00,
-                      risk_score: 0.30,
+                      symbol: "SOL",
+                      action: "BUY",
+                      current_price: 102.3,
+                      target_price: 108.5,
+                      stop_loss: 98.0,
+                      risk_score: 0.3,
                       confidence: 0.78,
-                      reasoning: 'Strong momentum indicators and positive sentiment analysis'
-                    }
+                      reasoning:
+                        "Strong momentum indicators and positive sentiment analysis",
+                    },
                   ];
                   setProposals(mockProposals);
-                  setProposalError('Using demo data - API connected but no live proposals');
+                  setProposalError(
+                    "Using demo data - API connected but no live proposals"
+                  );
                 }
               } else {
-                throw new Error(`Proposals fetch failed: ${proposalRes.status}`);
+                throw new Error(
+                  `Proposals fetch failed: ${proposalRes.status}`
+                );
               }
             } catch (propErr) {
               console.error("Error fetching proposals:", propErr);
               setProposalError(`Proposals error: ${propErr.message}`);
               setProposals([]);
             }
-            
+
             return; // Success, exit the loop
           }
         } catch (err) {
@@ -267,15 +269,17 @@ export default function CryptoWatch() {
           continue;
         }
       }
-      
+
       // If we get here, none of the URLs worked
-      setApiStatus('disconnected');
-      setProposalError('Trading API not available - is your FastAPI server running?');
+      setApiStatus("disconnected");
+      setProposalError(
+        "Trading API not available - is your FastAPI server running?"
+      );
       setProposals([]);
     };
 
     checkApiAndFetchProposals();
-    
+
     // Set up periodic refresh
     const interval = setInterval(checkApiAndFetchProposals, 30000); // Every 30 seconds
     return () => clearInterval(interval);
@@ -290,20 +294,28 @@ export default function CryptoWatch() {
   const uniqueSymbols = [...new Set(proposals.map((p) => p.symbol))];
 
   const getStatusColor = (status) => {
-    switch(status) {
-      case 'connected': return 'text-green-400';
-      case 'checking': return 'text-yellow-400';
-      case 'disconnected': return 'text-red-400';
-      default: return 'text-gray-400';
+    switch (status) {
+      case "connected":
+        return "text-green-400";
+      case "checking":
+        return "text-yellow-400";
+      case "disconnected":
+        return "text-red-400";
+      default:
+        return "text-gray-400";
     }
   };
 
   const getActionColor = (action) => {
-    switch(action?.toUpperCase()) {
-      case 'BUY': return 'text-green-400 bg-green-900/30';
-      case 'SELL': return 'text-red-400 bg-red-900/30';
-      case 'HOLD': return 'text-yellow-400 bg-yellow-900/30';
-      default: return 'text-gray-400 bg-gray-900/30';
+    switch (action?.toUpperCase()) {
+      case "BUY":
+        return "text-green-400 bg-green-900/30";
+      case "SELL":
+        return "text-red-400 bg-red-900/30";
+      case "HOLD":
+        return "text-yellow-400 bg-yellow-900/30";
+      default:
+        return "text-gray-400 bg-gray-900/30";
     }
   };
 
@@ -311,7 +323,9 @@ export default function CryptoWatch() {
     <div className="w-full max-w-7xl mx-auto p-6  text-white rounded-xl shadow-2xl">
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-3xl font-bold text-white">Crypto Trading Dashboard</h2>
+        <h2 className="text-3xl font-bold text-white">
+          Crypto Trading Dashboard
+        </h2>
         <div className="flex items-center space-x-4">
           <div className={`text-sm ${getStatusColor(apiStatus)}`}>
             API: {apiStatus.toUpperCase()}
@@ -325,7 +339,9 @@ export default function CryptoWatch() {
       {/* Controls */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         <div className="space-y-2">
-          <label className="block text-sm font-medium text-gray-300">Symbol</label>
+          <label className="block text-sm font-medium text-gray-300">
+            Symbol
+          </label>
           <select
             value={symbol}
             onChange={(e) => setSymbol(e.target.value)}
@@ -343,7 +359,9 @@ export default function CryptoWatch() {
         </div>
 
         <div className="space-y-2">
-          <label className="block text-sm font-medium text-gray-300">Timeframe</label>
+          <label className="block text-sm font-medium text-gray-300">
+            Timeframe
+          </label>
           <select
             value={timeframe}
             onChange={(e) => setTimeframe(e.target.value)}
@@ -360,7 +378,9 @@ export default function CryptoWatch() {
         </div>
 
         <div className="space-y-2">
-          <label className="block text-sm font-medium text-gray-300">Chart Type</label>
+          <label className="block text-sm font-medium text-gray-300">
+            Chart Type
+          </label>
           <select
             value={chartType}
             onChange={(e) => setChartType(e.target.value)}
@@ -375,24 +395,27 @@ export default function CryptoWatch() {
       </div>
 
       {/* Chart */}
-      <div className="bg-gray-950 border border-[#ff6f61] p-4 rounded-lg mb-6" style={{ height: '400px' }}>
+      <div
+        className="bg-gray-950 border border-[#ff6f61] p-4 rounded-lg mb-6"
+        style={{ height: "400px" }}
+      >
         {loading && (
           <div className="flex items-center justify-center h-full">
             <div className="text-blue-400">Loading chart data...</div>
           </div>
         )}
-        
+
         {error && (
           <div className="flex items-center justify-center h-full">
             <div className="text-red-400">Error: {error}</div>
           </div>
         )}
-        
+
         {chartData && !loading && !error && (
-          <Chart 
-            ref={chartRef} 
-            type={chartType} 
-            data={chartData} 
+          <Chart
+            ref={chartRef}
+            type={chartType}
+            data={chartData}
             options={options}
           />
         )}
@@ -419,15 +442,16 @@ export default function CryptoWatch() {
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-xl font-bold text-white">AI Trading Proposals</h3>
           <div className="text-sm text-gray-400">
-            {proposals.length} active proposal{proposals.length !== 1 ? 's' : ''}
+            {proposals.length} active proposal
+            {proposals.length !== 1 ? "s" : ""}
           </div>
         </div>
 
         {/* API Status */}
-        {(apiStatus !== 'connected' || proposalError) && (
+        {(apiStatus !== "connected" || proposalError) && (
           <div className="mb-4 p-3 bg-yellow-900/30 border border-yellow-600 rounded-md">
             <div className="text-yellow-300 text-sm">
-              {proposalError || 'Checking API connection...'}
+              {proposalError || "Checking API connection..."}
             </div>
           </div>
         )}
@@ -435,11 +459,16 @@ export default function CryptoWatch() {
         {/* Symbol Filter */}
         {uniqueSymbols.length > 0 && (
           <div className="mb-6">
-            <h4 className="text-lg font-semibold mb-3 text-gray-300">Filter by Symbol</h4>
-            
+            <h4 className="text-lg font-semibold mb-3 text-gray-300">
+              Filter by Symbol
+            </h4>
+
             <div className="flex flex-wrap gap-2 mb-3">
               {uniqueSymbols.map((s) => (
-                <label key={s} className="flex items-center space-x-2 bg-gray-700 px-3 py-1 rounded-md cursor-pointer hover:bg-gray-600 transition-colors">
+                <label
+                  key={s}
+                  className="flex items-center space-x-2 bg-gray-700 px-3 py-1 rounded-md cursor-pointer hover:bg-gray-600 transition-colors"
+                >
                   <input
                     type="checkbox"
                     value={s}
@@ -448,7 +477,9 @@ export default function CryptoWatch() {
                       if (e.target.checked) {
                         setSelectedSymbols((prev) => [...prev, s]);
                       } else {
-                        setSelectedSymbols((prev) => prev.filter((sym) => sym !== s));
+                        setSelectedSymbols((prev) =>
+                          prev.filter((sym) => sym !== s)
+                        );
                       }
                     }}
                     className="rounded"
@@ -479,40 +510,44 @@ export default function CryptoWatch() {
                   <h4 className="text-lg font-bold text-white">
                     {proposal.symbol}
                   </h4>
-                  <span className={`px-2 py-1 rounded text-xs font-bold ${getActionColor(proposal.action)}`}>
+                  <span
+                    className={`px-2 py-1 rounded text-xs font-bold ${getActionColor(
+                      proposal.action
+                    )}`}
+                  >
                     {proposal.action}
                   </span>
                 </div>
-                
+
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span className="text-gray-400">Current:</span>
                     <span className="text-white font-medium">
-                      ${proposal.current_price?.toFixed(2) || 'N/A'}
+                      ${proposal.current_price?.toFixed(2) || "N/A"}
                     </span>
                   </div>
-                  
+
                   <div className="flex justify-between">
                     <span className="text-gray-400">Target:</span>
                     <span className="text-green-400 font-medium">
-                      ${proposal.target_price?.toFixed(2) || 'N/A'}
+                      ${proposal.target_price?.toFixed(2) || "N/A"}
                     </span>
                   </div>
-                  
+
                   <div className="flex justify-between">
                     <span className="text-gray-400">Stop Loss:</span>
                     <span className="text-red-400 font-medium">
-                      ${proposal.stop_loss?.toFixed(2) || 'N/A'}
+                      ${proposal.stop_loss?.toFixed(2) || "N/A"}
                     </span>
                   </div>
-                  
+
                   <div className="flex justify-between">
                     <span className="text-gray-400">Risk:</span>
                     <span className="text-yellow-400 font-medium">
                       {((proposal.risk_score || 0) * 100).toFixed(1)}%
                     </span>
                   </div>
-                  
+
                   <div className="flex justify-between">
                     <span className="text-gray-400">Confidence:</span>
                     <span className="text-blue-400 font-medium">
@@ -520,7 +555,7 @@ export default function CryptoWatch() {
                     </span>
                   </div>
                 </div>
-                
+
                 {proposal.reasoning && (
                   <div className="mt-3 pt-3 border-t border-gray-600">
                     <p className="text-xs text-gray-400 leading-relaxed">
@@ -534,10 +569,9 @@ export default function CryptoWatch() {
         ) : (
           <div className="text-center py-8">
             <div className="text-gray-400 text-lg">
-              {proposals.length === 0 
-                ? 'No trading proposals available' 
-                : 'No proposals match your current filter'
-              }
+              {proposals.length === 0
+                ? "No trading proposals available"
+                : "No proposals match your current filter"}
             </div>
             {selectedSymbols.length > 0 && (
               <button
