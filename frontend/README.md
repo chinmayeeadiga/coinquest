@@ -20,13 +20,17 @@ A sophisticated AI-powered trading system that combines your existing technical 
 ### User Interface
 - **Modern Web Dashboard**: Real-time proposal approval interface
 - **Email Notifications**: Rich HTML emails with approve/reject buttons
-     
+     ![email1](assets/email1)
 - **Manual Analysis**: On-demand analysis of any stock or crypto
 - **Portfolio Tracking**: View positions, trades, and performance
 
 ## 📁 Project Structure
 **frontend**
 ```
+<<<<<<< Updated upstream
+=======
+# Frontend
+>>>>>>> Stashed changes
 coinquest-frontend/
 ├── public/
 │   ├── favicon.ico
