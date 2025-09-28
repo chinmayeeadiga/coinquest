@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import "./port.css";
 function PortfolioCard() {
   const [portfolio, setPortfolio] = useState({
     balance: 0,
@@ -10,7 +10,7 @@ function PortfolioCard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const ngrokUrl = "https://de6890d58456.ngrok-free.app"; // Replace with your ngrok URL
+  const ngrokUrl = "https://1917286b732f.ngrok-free.app"; // Replace with your ngrok URL
 
   const fetchPortfolio = async () => {
     try {
@@ -49,7 +49,7 @@ function PortfolioCard() {
 
   if (loading) {
     return (
-      <div className="absolute bottom-4 left-4 border border-[#ff6f61] rounded p-4 w-60 shadow-lg text-white bg-gray-900/50">
+      <div className="portfolio-card">
         Loading portfolio...
       </div>
     );
@@ -57,14 +57,14 @@ function PortfolioCard() {
 
   if (error) {
     return (
-      <div className="absolute bottom-4 left-4 border border-red-500 rounded p-4 w-60 shadow-lg text-white bg-gray-900/50">
+      <div className="portfolio-card">
         {error}
       </div>
     );
   }
 
   return (
-    <div className="absolute bottom-4 left-4 border border-[#ff6f61] rounded p-4 w-60 shadow-lg text-white bg-gray-900/50">
+    <div className="portfolio-card">
       <h2 className="text-lg font-bold">PORTFOLIO ANALYSIS</h2>
       <p>Total Balance: ${portfolio.balance?.toLocaleString()}</p>
       <p>Unrealized P&L: ${portfolio.unrealized?.toLocaleString()}</p>

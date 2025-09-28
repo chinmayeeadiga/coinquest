@@ -1,0 +1,114 @@
+.home-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;  /* just to see better */
+}
+
+/* Logo */
+.logo {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 120px;
+  height: 120px;
+  border-radius: 12px;
+}
+
+/* Centered title + buttons */
+.center-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+/* Buttons */
+.button-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.watch-btn, .trade-btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.2rem;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.watch-btn {
+  background: #b91c1c;
+  color: white;
+}
+
+.trade-btn {
+  background: #111827;
+  color: white;
+}
+.coinquest-title {
+  font-size: 4rem; /* make the title bigger on desktop */
+  font-weight: bold;
+  text-align: center;
+}
+
+.watch-btn:hover {
+  background: #991b1b; /* darker red on hover */
+  transform: scale(1.05); /* optional slight zoom effect */
+  transition: all 0.3s ease;
+}
+
+/* Trade Button Hover */
+.trade-btn:hover {
+  background: #1f2937; /* slightly lighter black/gray */
+  transform: scale(1.05); /* optional slight zoom effect */
+  transition: all 0.3s ease;
+}
+
+/* ------------------------------------
+   📱 Mobile styles: below 560px
+------------------------------------ */
+@media (max-width: 560px) {
+  .home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    overflow-y: auto; /* allow scrolling */
+    padding: 1rem;
+  }
+
+  /* Logo first */
+  .logo {
+    position: static;
+    margin-bottom: 1rem;
+  }
+
+  /* Top Right card below logo */
+  .top-right, .top-left, .bottom-left, .bottom-right {
+    position: static !important;
+    width: 100%;
+    max-width: 350px;
+    margin-bottom: 1rem;
+  }
+
+  /* Coinquest in middle */
+  .center-content {
+    position: static;
+    margin-bottom: 1rem;
+  }
+
+  .coinquest-title {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  /* Buttons below coinquest */
+  .button-group {
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+}

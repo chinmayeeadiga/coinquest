@@ -11,7 +11,7 @@ export default function Trade() {
 
   // API detection - same logic as crypto component
   const possibleUrls = [
-    'https://de6890d58456.ngrok-free.app',
+    'https://1917286b732f.ngrok-free.app',
     'http://localhost:8080',
     'http://127.0.0.1:8080',
     'http://localhost:8000',

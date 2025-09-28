@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import "./algo.css";
 function AlgorithmStatusCard() {
   const [status, setStatus] = useState({
     core: "Loading...",
@@ -9,7 +9,7 @@ function AlgorithmStatusCard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const ngrokUrl = "https://de6890d58456.ngrok-free.app"; // Replace with your ngrok URL
+  const ngrokUrl = "https://1917286b732f.ngrok-free.app"; // Replace with your ngrok URL
 
   const fetchAlgorithmStatus = async () => {
     try {
@@ -47,7 +47,7 @@ function AlgorithmStatusCard() {
 
   if (loading) {
     return (
-      <div className="absolute bottom-4 right-4 border border-[#ff6f61] rounded p-4 w-60 shadow-lg text-white bg-gray-900/50">
+      <div className="algorithm-card">
         Loading algorithm status...
       </div>
     );
@@ -55,14 +55,14 @@ function AlgorithmStatusCard() {
 
   if (error) {
     return (
-      <div className="absolute bottom-4 right-4 border border-red-500 rounded p-4 w-60 shadow-lg text-white bg-gray-900/50">
+      <div className="algorithm-card">
         {error}
       </div>
     );
   }
 
   return (
-    <div className="absolute bottom-4 right-4 border border-[#ff6f61] rounded p-4 w-60 shadow-lg text-white bg-gray-900/50">
+    <div className="algorithm-card">
       <h2 className="text-lg font-bold text-white">ALGORITHM STATUS</h2>
       <ul className="text-white">
         <li>Core Engine: {status.core}</li>

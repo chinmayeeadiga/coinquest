@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./market.css";
 
 function MarketDataCard() {
   const [data, setData] = useState({
@@ -10,7 +11,7 @@ function MarketDataCard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const ngrokUrl = "https://de6890d58456.ngrok-free.app"; // Replace with your ngrok URL
+  const ngrokUrl = "https://1917286b732f.ngrok-free.app"; // Replace with your ngrok URL
 
   const fetchMarketData = async () => {
     try {
@@ -54,7 +55,7 @@ function MarketDataCard() {
 
   if (loading) {
     return (
-      <div className="absolute top-4 right-4 border border-[#ff6f61] rounded p-4 w-60 shadow-lg text-white bg-gray-900/50">
+      <div className="market-card">
         Loading market data...
       </div>
     );
@@ -62,14 +63,14 @@ function MarketDataCard() {
 
   if (error) {
     return (
-      <div className="absolute top-4 right-4 border border-red-500 rounded p-4 w-60 shadow-lg text-white bg-gray-900/50">
+      <div className="market-card">
         {error}
       </div>
     );
   }
 
   return (
-    <div className="absolute top-4 right-4 border border-[#ff6f61] rounded p-4 w-60 shadow-lg text-white bg-gray-900/50">
+    <div className="market-card">
       <h2 className="text-lg font-bold text-white">MARKET DATA</h2>
       <p>BTC/USD: ${data.price?.toLocaleString()}</p>
       <p>24h Change: {data.change?.toFixed(2)}%</p>

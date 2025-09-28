@@ -7,52 +7,39 @@ import SystemMonitorCard from "../components/SystemMonitorCard";
 import { GlareCard } from "../components/ui/glare-card";
 import { TypewriterEffect } from "../components/ui/typewriter";
 import logo from "../assets/logo.png";
+import "./home.css";
 
 function Home() {
   const navigate = useNavigate(); // <-- define navigate
 
   return (
-    <div className="relative h-screen w-screen">
-      <img
-        src={logo} // <-- replace with your image path
-        alt="Logo"
-        className="absolute top-4 left-4 w-16 h-16 sm:w-20 sm:h-20 md:w-30 md:h-30 object-cover rounded-2xl shadow-lg"
-      />
-      <MarketDataCard title="Top Left" content="This is the top left card" position="top-left" />
-      <AlgorithmStatusCard title="Top Right" content="This is the top right card" position="top-right" />
-      <PortfolioCard title="Bottom Left" content="This is the bottom left card" position="bottom-left" />
+    <div className="home-container">
+  {/* Logo */}
+  <img src={logo} alt="Logo" className="logo" />
 
-      <div className="absolute inset-0 flex flex-col items-center justify-center space-y-6">
-  {/* Title */}
-  <TypewriterEffect
-        words={[{ text: "COINQUEST", className: "text-white" }]}
-        className="text-2xl md:text-7xl lg:text-9xl font-bold"
-        cursorClassName="bg-blue-500"
-      />
+  {/* Cards */}
+  
+ 
 
-  {/* Buttons */}
-  <div className="flex space-x-4">
-  <button
-    className="bg-red-800 hover:bg-red-700 text-white text-lg px-6 py-3 rounded-xl font-semibold"
-    onClick={() => navigate("/crypto")}
-  >
-    Watch
-  </button>
-  
-  <button
-    className="bg-red-950 hover:bg-red-900 text-white text-lg px-6 py-3 rounded-xl font-semibold"
-    onClick={() => navigate("/trade")}
-  >
-    Trade
-  </button>
-  
-  
+  {/* Center content */}
+  <div className="center-content">
+    <TypewriterEffect
+      words={[{ text: "COINQUEST", className: "text-white" }]}
+      className="coinquest-title"
+      cursorClassName="bg-blue-500"
+    />
+
+    <div className="button-group">
+      <button className="watch-btn" onClick={() => navigate("/crypto")}>Watch</button>
+      <button className="trade-btn" onClick={() => navigate("/trade")}>Trade</button>
+    </div>
+    
+    <MarketDataCard title="Top Left" content="This is the top left card" position="top-left" />
+     <PortfolioCard title="Bottom Left" content="This is the bottom left card" position="bottom-left" />
+  <AlgorithmStatusCard title="Top Right" content="This is the top right card" position="bottom-right" />
+  </div>
 </div>
 
-
-      </div>
-      
-    </div>
   );
 }
 

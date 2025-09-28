@@ -168,7 +168,7 @@ export default function CryptoWatch() {
   useEffect(() => {
     const checkApiAndFetchProposals = async () => {
       const possibleUrls = [
-        'https://de6890d58456.ngrok-free.app',
+        'https://1917286b732f.ngrok-free.app',
         'http://localhost:8080',
         'http://127.0.0.1:8080',
         'http://localhost:8000',
@@ -524,10 +524,7 @@ export default function CryptoWatch() {
                 {proposal.reasoning && (
                   <div className="mt-3 pt-3 border-t border-gray-600">
                     <p className="text-xs text-gray-400 leading-relaxed">
-                      {proposal.reasoning.length > 100 
-                        ? `${proposal.reasoning.substring(0, 100)}...` 
-                        : proposal.reasoning
-                      }
+                      {proposal.reasoning}
                     </p>
                   </div>
                 )}
