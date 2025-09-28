@@ -25,7 +25,7 @@ A sophisticated AI-powered trading system that combines your existing technical 
 - **Portfolio Tracking**: View positions, trades, and performance
 
 ## 📁 Project Structure
-
+```
 #frontend
 coinquest/
 ├── frontend/ # React frontend (CoinQuest)
@@ -55,6 +55,7 @@ coinquest/
 │ ├── templates/
 │ └── logs/
 └── README.md
+```
 ```
 #backend
 ai-trading-agent/
