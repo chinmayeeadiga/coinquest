@@ -27,75 +27,94 @@ A sophisticated AI-powered trading system that combines your existing technical 
 ## 📁 Project Structure
 ```
 #frontend
-coinquest/
-├── frontend/ # React frontend (CoinQuest)
-│ ├── public/ # Static assets
-│ ├── src/
-│ │ ├── components/ # React components
-│ │ ├── pages/ # Views / Pages
-│ │ ├── assets/ # Images, styles
-│ │ ├── App.jsx # Main App component
-│ │ └── main.jsx # Entry point
-│ ├── package.json
-│ └── vite.config.js
-├── backend/ # AI trading agent backend
-│ ├── new_main.py # FastAPI application entry point
-│ ├── agent.py # Main AI agent orchestrator
-│ ├── data_fetcher.py
-│ ├── analyzer.py
-│ ├── trader.py
-│ ├── notifier.py
-│ ├── models.py
-│ ├── tasks.py
-│ ├── utils.py
-│ ├── config.py
-│ ├── setup.py
-│ ├── requirements.txt
-│ ├── prompt.txt
-│ ├── templates/
-│ └── logs/
+coinquest-frontend/
+├── public/
+│   ├── favicon.ico
+│   └── vite.svg
+│
+├── src/
+│   ├── assets/
+│   │   ├── images/
+│   │   │   ├── logo.png
+│   │   │   └── react.svg
+│   │
+│   ├── components/
+│   │   ├── AlgorithmStatusCard.jsx
+│   │   ├── MarketDataCard.jsx
+│   │   ├── PortfolioCard.jsx
+│   │   ├── SystemMonitorCard.jsx
+│   │   ├── algo.css
+│   │   |── market.css
+│   │   │── port.css
+│   │   │
+│   │   ├── lib/
+│   │   │   └── utils.js
+│   │   │
+│   │   └── ui/
+│   │       ├── AuroraBackground.jsx
+│   │       ├── Cyberpunk.jsx
+│   │       ├── GlareCard.jsx
+│   │       ├── HoverCard.jsx
+│   │       ├── Typewriter.jsx
+│   │       └── cyberpunk.css
+│   │
+│   ├── layouts/
+│   │   └── AppLayout.jsx
+│   │
+│   ├── pages/
+│   │   ├── Home.jsx
+│   │   ├── Crypto.jsx
+│   │   ├── Trade.jsx
+│   │   └── home.css
+│   │
+│   ├── App.jsx
+│   ├── App.css
+│   ├── index.css
+│   └── main.jsx
+│
+├── .gitignore
+├── package.json
+├── vite.config.js
 └── README.md
+
 ```
 ```
 #backend
 ai-trading-agent/
-├── new_main.py              # FastAPI application entry point
-├── agent.py                 # Main AI agent orchestrator
-├── data_fetcher.py          # Enhanced data provider
-├── analyzer.py              # Analysis engine (integrates your technical_analysis.py)
-├── trader.py                # Paper trading & execution
-├── notifier.py              # Email notification service
-├── models.py                # Database models & management
-├── tasks.py                 # Background scheduler
-├── utils.py                 # Utility functions
-├── config.py                # Configuration management
-├── setup.py                 # One-time setup script
-├── requirements.txt         # Python dependencies
-├── prompt.txt               # AI agent instructions
-├── templates/
-│   ├── dashboard.html       # Main web interface
-│   └── error.html          # Error pages
-├── logs/                    # Application logs
-└── your_existing_files/     # Your original code (preserved)
-    ├── technical_analysis.py
-    ├── crypto_data_provider.py
-    ├── backtest.py
-    ├── opening_range_breakout.py
-    └── ... (all your existing strategies)
+├── backend/ # AI trading agent backend
+│ ├── complete_realtime_main.py 
+│ ├── enhanced_crypto_agent.py # Main AI agent orchestrator
+│ ├── data_fetcher.py
+│ ├── enhanced_crypto_analyzer.py
+│ ├── enhanced_crypto_trader.py
+│ ├── notifier.py
+│ ├── crypto_data_provider.py
+│ ├── models.py
+│ ├── tasks.py
+│ ├── utils.py
+│ ├── config.py
+│ ├── database.py
+│ ├── requirements.txt
+
 ```
 
 ## 🛠️ Installation & Setup
 
 #frontend
+### 1. Navigate to frontend folder
 ```bash
-# Navigate to frontend folder
 cd frontend
+```
 
-# Install dependencies
+### 2. Install dependencies
+```bash
 npm install
+```
 
-# Start development server
+### 3. Start development server
+```bash
 npm run dev
+```
 
 
 
